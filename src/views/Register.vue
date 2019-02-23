@@ -167,12 +167,8 @@ export default {
   methods:{
      handleForm: function() {
          console.log(this.firstName);
-         this.validators.firstName = Math.random() > 0.5 ? "is-valid" : "is-invalid";
-         this.validators.lastName = Math.random() > 0.5 ? "is-valid" : "is-invalid";
-         this.validators.email = Math.random() > 0.5 ? "is-valid" : "is-invalid";
-         this.validators.selectedYear = Math.random() > 0.5 ? "is-valid" : "is-invalid";
-         this.validators.selectedMonth = Math.random() > 0.5 ? "is-valid" : "is-invalid";
-         this.validators.selectedDay = Math.random() > 0.5 ? "is-valid" : "is-invalid";        
+        //  this.validators.firstName = Math.random() > 0.5 ? "is-valid" : "is-invalid";
+              
      },
   },
 
