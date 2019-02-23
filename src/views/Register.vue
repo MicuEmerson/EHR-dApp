@@ -132,6 +132,7 @@
 
 <script>
 //aici bagam web3
+import FieldValidator from "../utils/FieldValidator.js"
 
 export default {
   name: 'Register',
@@ -166,10 +167,105 @@ export default {
   },
   methods:{
      handleForm: function() {
-         console.log(this.firstName);
-        //  this.validators.firstName = Math.random() > 0.5 ? "is-valid" : "is-invalid";
-              
+         if(this.checkFieldValidity()){
+            this.$router.push('Home') 
+         }
+         else{
+           this.$router.push('Home') 
+         }
      },
+
+     checkFieldValidity: function(){
+        let fieldValidator = new FieldValidator();
+        let ok = true;
+
+        if(!fieldValidator.checkOnlyLetters(this.firstName)){
+          this.validators.firstName = "is-invalid";
+          ok = false;
+        }
+        else{
+          this.validators.firstName = "";
+        }
+        if(!fieldValidator.checkOnlyLetters(this.lastName)){
+          this.validators.lastName = "is-invalid";
+          ok = false;
+        }
+        else{
+          this.validators.lastName = "";
+        }
+        if(!fieldValidator.checkNumber(this.SID)){
+          this.validators.SID = "is-invalid";
+          ok = false;
+        }
+        else{
+          this.validators.SID = "";
+        }
+        if(fieldValidator.checkEmpty(this.selectedYear)){
+          this.validators.selectedYear = "is-invalid";
+          ok = false;
+        }
+        else{
+          this.validators.selectedYear = "";
+        }
+        if(fieldValidator.checkEmpty(this.selectedMonth)){
+          this.validators.selectedMonth = "is-invalid";
+          ok = false;
+        }
+        else{
+          this.validators.selectedMonth = "";
+        }
+        if(fieldValidator.checkEmpty(this.selectedDay)){
+          this.validators.selectedDay = "is-invalid";
+          ok = false;
+        }
+        else{
+          this.validators.selectedDay = "";
+        }
+        if(fieldValidator.checkEmpty(this.selectedCity)){
+          this.validators.selectedCity = "is-invalid";
+          ok = false;
+        }
+        else{
+          this.validators.selectedCity = "";
+        }
+        if(!fieldValidator.checkEmail(this.email)){
+          this.validators.email = "is-invalid";
+          ok = false;
+        }
+        else{
+          this.validators.email = "";
+        }
+        if(!fieldValidator.checkNumber(this.telephone)){
+          this.validators.telephone = "is-invalid";
+          ok = false;
+        }
+        else{
+          this.validators.telephone = "";
+        }
+        if(fieldValidator.checkEmpty(this.address)){
+          this.validators.address = "is-invalid";
+          ok = false;
+        }
+        else{
+          this.validators.address = "";
+        }
+        if(fieldValidator.checkEmpty(this.selectedCity)){
+          this.validators.selectedCity = "is-invalid";
+          ok = false;
+        }
+        else{
+          this.validators.selectedCity = "";
+        }
+        if(!fieldValidator.checkNumber(this.zip)){
+          this.validators.zip = "is-invalid";
+          ok = false;
+        }
+        else{
+          this.validators.zip = "";
+        }
+
+        return ok;
+     }
   },
 
 }
