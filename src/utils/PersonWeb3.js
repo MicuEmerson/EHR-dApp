@@ -14,7 +14,6 @@ const App = {
     },
 
     loadWeb3: async () => {
-        console.log("Te-am prins");
         if (typeof web3 !== 'undefined') {
           App.web3Provider = web3.currentProvider
           web3 = new Web3(web3.currentProvider)
@@ -24,7 +23,6 @@ const App = {
         }
         // Modern dapp browsers...
         if (window.ethereum) {
-          console.log("MODERN...");
           window.web3 = new Web3(ethereum)
           try {
             // Request account access if needed
@@ -57,7 +55,7 @@ const App = {
 
     createNewPerson: async (firstName, lastName, SID) =>{
         App.person = await App.contracts.Person.new(firstName, lastName, SID, {from: App.account});
-        console.log(App.person);
+        return App.person.address;
     },
 
     loadContract: async () => {
