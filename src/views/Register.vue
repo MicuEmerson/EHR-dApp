@@ -181,7 +181,6 @@
 </template>
 
 <script>
-//aici bagam web3
 import FieldValidator from "../utils/FieldValidator.js";
 import PersonWeb3 from "../utils/PersonWeb3.js";
 

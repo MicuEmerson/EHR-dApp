@@ -15,7 +15,7 @@
         <router-link class="nav-link" to="/register">Register</router-link>
       </li>
     </ul>
-
+    
     <router-view/>
   </div>
 </template>
@@ -23,6 +23,7 @@
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  margin-top: 15px;
+  margin-bottom: 15px;
+  
 }
 </style>
