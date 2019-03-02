@@ -3,7 +3,7 @@
     <transition name="fade">
 
       <!-- connect to smart-contract -->
-      <!-- <div id="connect-part" v-if="loading == 0 || loading == 2">
+      <div id="connect-part" v-if="loading == 0 || loading == 2">
         <h2>Connect to your Smart Contract</h2>
         <div class="input-group input-group-lg">
           <div class="input-group-prepend">
@@ -26,10 +26,10 @@
           role="alert"
           v-if="loading == 2"
         >You don't have access to this contract.</div>
-      </div> -->
+      </div>
 
       <!-- Logged Pacient -->
-      <div v-if="loading == 0">
+      <div v-if="loading == 1">
         <h2>Welcome {{firstName}}</h2>
 
         <div class="pacient-layout">
@@ -73,9 +73,13 @@ export default {
   },
   methods: {
     login: async function() {
-      this.firstName = await PersonWeb3.getFirstName(this.smAddress);
-      if (this.firstName !== "error") this.loading = 1;
-      else this.loading = 2;
+      this.firstName = await PersonWeb3.getAccess(this.smAddress);
+      if (this.firstName !== "error"){
+        this.loading = 1;
+      }
+      else{
+        this.loading = 2;
+      }
     },
   }
 };

@@ -4,14 +4,12 @@ var TruffleContract = require("truffle-contract");
 Web3 = require('web3')
 
 const App = {
-  loading: false,
   contracts: {},
 
   load: async () => {
     await App.loadWeb3();
     await App.loadAccount();
     await App.loadContract();
-    console.log(App.account);
   },
 
   loadWeb3: async () => {
@@ -48,23 +46,31 @@ const App = {
   },
 
   loadAccount: async () => {
-    // Set the current blockchain account
+    // Set the current blockchain account from MetaMask
     web3.eth.getAccounts(function (error, accounts) {
       App.account = accounts[0];
     })
   },
 
-  createNewPerson: async (firstName, lastName, SID) => {
-    App.person = await App.contracts.Person.new(firstName, lastName, SID, { from: App.account });
+  loadContract: async () => {
+    // Create a JavaScript version of the smart contract
+    App.contracts.Person = TruffleContract(personJSON)
+    App.contracts.Person.setProvider(App.web3Provider);
+  },
+
+
+  createNewPerson: async (firstName, lastName, SID, year, month, day, email, phone, address, city, zip) => {
+    App.person = await App.contracts.Person.new(firstName, lastName, SID, year, month, day, email,
+      phone, address, city, zip, { from: App.account });
     return App.person.address;
   },
 
-  getFirstName: async (contractAddress) => {
+  //this function will be called first time time when pacient enter a smart-contract adddress
+  // and also will cache smart-contract address and Person smart-contract from blockchain
+  getAccess: async (contractAddress) => {
     try {
       App.person = await App.contracts.Person.at(contractAddress);
-      console.log(App.account);
       let personName = await App.person.getFirstName({from: App.account});
-      console.log(personName);
       return personName;
     }
     catch (e) {
@@ -72,15 +78,58 @@ const App = {
     }
   },
 
-  loadContract: async () => {
-    // Create a JavaScript version of the smart contract
-
-    App.contracts.Person = TruffleContract(personJSON)
-    App.contracts.Person.setProvider(App.web3Provider);
-
-    // Hydrate the smart contract with values from the blockchain
-    // App.factory = await App.contracts.Factory.deployed()
+  //getters part
+  getFirstName: async () => {
+    return await App.person.getFirstName({from: App.account});
   },
+  getLastName: async () => {
+    return await App.person.getLastName({from: App.account});
+  },
+  getSID: async () => {
+    return await App.person.getSID({from: App.account});
+  },
+  getYear: async () => {
+    return await App.person.getYear({from: App.account});
+  },
+  getMonth: async () => {
+    return await App.person.getMonth({from: App.account});
+  },
+  getDay: async () => {
+    return await App.person.getDay({from: App.account});
+  },
+  getEmail: async () => {
+    return await App.person.getEmail({from: App.account});
+  },
+  getTelephone: async () => {
+    return await App.person.getTelephone({from: App.account});
+  },
+  getPersonAddress: async () => {
+    return await App.person.getPersonAddress({from: App.account});
+  },
+  getCity: async () => {
+    return await App.person.getCity({from: App.account});
+  },
+  getZip: async () => {
+    return await App.person.getZip({from: App.account});
+  },
+
+  //setters part
+  setEmail: async (email) => {
+    return await App.person.setEmail(email, {from: App.account});
+  },
+  setTelephone: async (telephone) => {
+    return await App.person.setTelephone(telephone, {from: App.account});
+  },
+  setAddress: async (address) => {
+    return await App.person.setAddress(address, {from: App.account});
+  },
+  setCity: async (city) => {
+    return await App.person.setCity(city, {from: App.account});
+  },
+  setZip: async (zip) => {
+    return await App.person.setZip(zip, {from: App.account});
+  },
+ 
 }
 
 export default App;

@@ -20,20 +20,35 @@
       </div>
     </div>
 
+    <!-- year/month/day -->
     <div class="form-row">
       <div class="form-group col-md-4">
-        <label for="inputCNP">Year</label>
+        <label>Year</label>
         <input type="text" class="form-control" v-model="selectedYear" disabled>
       </div>
 
       <div class="form-group col-md-3">
-        <label for="inputCNP">Month</label>
+        <label>Month</label>
         <input type="text" class="form-control" v-model="selectedMonth" disabled>
       </div>
 
       <div class="form-group col-md-3">
         <label>Day</label>
         <input type="text" class="form-control" v-model="selectedDay" disabled>
+      </div>
+    </div>
+
+    <!-- email & telephone -->
+    <div class="form-row">
+      <div class="form-group col-md-5">
+        <label>Email</label>
+        <input type="text" class="form-control" :class="validators.email" v-model="email">
+        <div class="invalid-feedback">Invalid email, please use this form abcd@xyz.</div>
+      </div>
+      <div class="form-group col-md-5">
+        <label>Telephone</label>
+        <input type="text" class="form-control" :class="validators.telephone" v-model="telephone">
+        <div class="invalid-feedback">Telephone number can contain only digits and + sign.</div>
       </div>
     </div>
 
@@ -53,7 +68,6 @@
           <option>Bucuresti</option>
         </select>
       </div>
-
       <div class="form-group col-md-5">
         <label>Zip</label>
         <input type="text" class="form-control" v-model="zip">
@@ -72,16 +86,23 @@
     </button>
     
     <button
-      v-if="loading == 0"
+      v-if="loading == 0 || loading == 2"
       type="button"
       class="btn btn-outline-primary central-button"
       @click="updateContract()"
     >Update</button>
+
+    <div
+      v-if="loading == 2"
+      class="alert alert-success info-div"
+      role="alert"
+    >Successfully Updated</div>
   </form>
 </template>
 
 <script>
 import PersonWeb3 from "../../utils/PersonWeb3.js";
+import FieldValidator from "../../utils/FieldValidator.js";
 export default {
   name: "Pacient",
   data() {
@@ -106,17 +127,101 @@ export default {
         selectedCity: ""
       },
 
+      changed: {
+        email: "",
+        telephone: "",
+        address: "",
+        city: "",
+        zip: ""
+      },
+
       loading: 0
     };
   },
-  // mounted: function() {
-  //   this.$nextTick(function() {
-  //     PersonWeb3.load();
-  //   });
-  // },
+  mounted: function() {
+    this.$nextTick(async function() {
+      this.firstName = await PersonWeb3.getFirstName();
+      this.lastName = await PersonWeb3.getLastName();
+      this.SID = await PersonWeb3.getSID();
+      this.selectedYear = await PersonWeb3.getYear();
+      this.selectedMonth = await PersonWeb3.getMonth();
+      this.selectedDay = await PersonWeb3.getDay();
+      this.email = await PersonWeb3.getEmail();
+      this.telephone = await PersonWeb3.getTelephone();
+      this.address = await PersonWeb3.getPersonAddress();
+      this.selectedCity = await PersonWeb3.getCity();
+      this.zip = await PersonWeb3.getZip();
+
+      this.changed.email = this.email;
+      this.changed.telephone = this.telephone;
+      this.changed.address = this.address;
+      this.changed.city = this.selectedCity;
+      this.changed.zip = this.zip;
+    });
+  },
   methods: {
-    updateContract: function(){
-      this.loading = 1;
+    updateContract: async function() {
+      if (this.checkFieldValidity()) {
+        this.loading = 1;
+        if (this.changed.email != this.email) {
+          await PersonWeb3.setEmail(this.email);
+          this.changed.email = this.email;
+        }
+        if (this.changed.telephone != this.telephone) {
+          await PersonWeb3.setTelephone(this.telephone);
+           this.changed.telephone = this.telephone;
+        }
+        if (this.changed.address != this.address) {
+          await PersonWeb3.setAddress(this.address);
+          this.changed.address = this.address;
+        }
+        if (this.changed.zip != this.zip) {
+          await PersonWeb3.setZip(this.zip);
+          this.changed.zip = this.zip;
+        }
+        if (this.changed.city != this.selectedCity) {
+          await PersonWeb3.setCity(this.selectedCity);
+          this.changed.city = this.city;
+        }
+        this.loading = 2;
+      }
+    },
+    checkFieldValidity: function() {
+      let fieldValidator = new FieldValidator();
+      let ok = true;
+
+      if (!fieldValidator.checkEmail(this.email)) {
+        this.validators.email = "is-invalid";
+        ok = false;
+      } else {
+        this.validators.email = "";
+      }
+      if (!fieldValidator.checkNumber(this.telephone)) {
+        this.validators.telephone = "is-invalid";
+        ok = false;
+      } else {
+        this.validators.telephone = "";
+      }
+      if (fieldValidator.checkEmpty(this.address)) {
+        this.validators.address = "is-invalid";
+        ok = false;
+      } else {
+        this.validators.address = "";
+      }
+      if (fieldValidator.checkEmpty(this.selectedCity)) {
+        this.validators.selectedCity = "is-invalid";
+        ok = false;
+      } else {
+        this.validators.selectedCity = "";
+      }
+      if (!fieldValidator.checkNumber(this.zip)) {
+        this.validators.zip = "is-invalid";
+        ok = false;
+      } else {
+        this.validators.zip = "";
+      }
+
+      return ok;
     }
   }
 };
@@ -126,11 +231,19 @@ export default {
 .my-form {
   margin-top: 25px;
   margin-left: 150px;
+  margin-bottom: 30px;
+
 }
 .central-button {
   margin-left: 150px;
   margin-top: 35px;
   width: 50%;
   font-weight: bold;
+}
+
+.info-div{
+  width: 800px;
+  text-align: center;
+  margin-top: 15px;
 }
 </style>

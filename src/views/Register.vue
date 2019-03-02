@@ -69,7 +69,7 @@
         <!-- year / month / day -->
         <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="inputCNP">Year</label>
+            <label>Year</label>
             <select class="custom-select" :class="validators.selectedYear" v-model="selectedYear">
               <option disabled value>Select year</option>
               <option v-for="i in 2019" v-if="i >= 1935" :key="i">{{i}}</option>
@@ -78,7 +78,7 @@
           </div>
 
           <div class="form-group col-md-3">
-            <label for="inputCNP">Month</label>
+            <label>Month</label>
             <select class="custom-select" :class="validators.selectedMonth" v-model="selectedMonth">
               <option disabled value>Select month</option>
               <option v-for="i in 12" :key="i">{{i}}</option>
@@ -228,9 +228,9 @@ export default {
       if (this.checkFieldValidity()) {
         this.loading = 1;
         this.smAddress = await PersonWeb3.createNewPerson(
-        this.firstName,
-        this.lastName,
-        this.SID
+          this.firstName, this.lastName, this.SID, this.selectedYear,
+          this.selectedMonth, this.selectedDay, this.email, this.telephone, 
+          this.address,  this.zip, this.selectedCity
         );
         this.loading = 2;
       }
