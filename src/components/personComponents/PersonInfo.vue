@@ -104,7 +104,7 @@
 import PersonWeb3 from "../../utils/PersonWeb3.js";
 import FieldValidator from "../../utils/FieldValidator.js";
 export default {
-  name: "Pacient",
+  name: "PacientInfo",
   data() {
     return {
       firstName: "",

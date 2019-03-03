@@ -1,4 +1,5 @@
 import personJSON from "../../build/contracts/Person.json"
+import doctorJSON from "../../build/contracts/Doctor.json"
 import { async } from "q";
 var TruffleContract = require("truffle-contract");
 Web3 = require('web3')
@@ -56,8 +57,13 @@ const App = {
     // Create a JavaScript version of the smart contract
     App.contracts.Person = TruffleContract(personJSON)
     App.contracts.Person.setProvider(App.web3Provider);
-  },
 
+    App.contracts.Doctor = TruffleContract(doctorJSON);
+    App.contracts.Doctor.setProvider(App.web3Provider);
+
+    App.doctor = await App.contracts.Doctor.deployed();
+    console.log(App.doctor);
+  },
 
   createNewPerson: async (firstName, lastName, SID, year, month, day, email, phone, address, city, zip) => {
     App.person = await App.contracts.Person.new(firstName, lastName, SID, year, month, day, email,
@@ -76,6 +82,18 @@ const App = {
     catch (e) {
       return "error";
     }
+  },
+
+  checkDoctorAddress: async(doctorAddress) => {
+    try{
+      return await App.doctor.doctors(doctorAddress, {from: App.account});
+    }
+    catch(e){
+      return "error"
+    }
+  },
+  addDoctor: async (doctorAddress) => {
+
   },
 
   //getters part

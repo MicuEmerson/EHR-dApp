@@ -12,13 +12,18 @@
       "name": "doctors",
       "outputs": [
         {
-          "name": "",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "specialty",
           "type": "string"
         }
       ],
       "payable": false,
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "signature": "0xa9583c22"
     },
     {
       "constant": false,
@@ -30,29 +35,34 @@
         {
           "name": "_name",
           "type": "string"
+        },
+        {
+          "name": "_specialty",
+          "type": "string"
         }
       ],
       "name": "addDoctor",
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
-      "type": "function"
+      "type": "function",
+      "signature": "0x34b78998"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b506103db806100206000396000f3fe60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680637cf1e44514610051578063a9583c2214610139575b600080fd5b34801561005d57600080fd5b506101376004803603604081101561007457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001906401000000008111156100b157600080fd5b8201836020820111156100c357600080fd5b803590602001918460018302840111640100000000831117156100e557600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610203565b005b34801561014557600080fd5b506101886004803603602081101561015c57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061025a565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156101c85780820151818401526020810190506101ad565b50505050905090810190601f1680156101f55780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b806000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020908051906020019061025592919061030a565b505050565b60006020528060005260406000206000915090508054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103025780601f106102d757610100808354040283529160200191610302565b820191906000526020600020905b8154815290600101906020018083116102e557829003601f168201915b505050505081565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061034b57805160ff1916838001178555610379565b82800160010185558215610379579182015b8281111561037857825182559160200191906001019061035d565b5b509050610386919061038a565b5090565b6103ac91905b808211156103a8576000816000905550600101610390565b5090565b9056fea165627a7a72305820daec314342a5d0f3598200713be7b655e59d0b3c9110692f0527b4c8715eeeec0029",
-  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680637cf1e44514610051578063a9583c2214610139575b600080fd5b34801561005d57600080fd5b506101376004803603604081101561007457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001906401000000008111156100b157600080fd5b8201836020820111156100c357600080fd5b803590602001918460018302840111640100000000831117156100e557600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610203565b005b34801561014557600080fd5b506101886004803603602081101561015c57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061025a565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156101c85780820151818401526020810190506101ad565b50505050905090810190601f1680156101f55780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b806000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020908051906020019061025592919061030a565b505050565b60006020528060005260406000206000915090508054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103025780601f106102d757610100808354040283529160200191610302565b820191906000526020600020905b8154815290600101906020018083116102e557829003601f168201915b505050505081565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061034b57805160ff1916838001178555610379565b82800160010185558215610379579182015b8281111561037857825182559160200191906001019061035d565b5b509050610386919061038a565b5090565b6103ac91905b808211156103a8576000816000905550600101610390565b5090565b9056fea165627a7a72305820daec314342a5d0f3598200713be7b655e59d0b3c9110692f0527b4c8715eeeec0029",
-  "sourceMap": "34:223:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;34:223:0;;;;;;;",
-  "deployedSourceMap": "34:223:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;132:122;;8:9:-1;5:2;;;30:1;27;20:12;5:2;132:122:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;132:122:0;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;132:122:0;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;132:122:0;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;132:122:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;132:122:0;;;;;;;;;;;;;;;;;;78:41;;8:9:-1;5:2;;;30:1;27;20:12;5:2;78:41:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;78:41:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;78:41:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;132:122;241:5;214:7;:24;222:15;214:24;;;;;;;;;;;;;;;:32;;;;;;;;;;;;:::i;:::-;;132:122;;:::o;78:41::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;34:223::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
-  "source": "pragma solidity >=0.4.22 <0.6.0;\r\ncontract Doctor {\r\n    //adress & name\r\n    mapping(address => string) public doctors;\r\n    \r\n    function addDoctor(address _doctorsAddress, string memory _name) public{\r\n        doctors[_doctorsAddress] = _name;\r\n    }\r\n}",
+  "bytecode": "0x608060405234801561001057600080fd5b506105c0806100206000396000f3fe60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806334b7899814610051578063a9583c22146101d0575b600080fd5b34801561005d57600080fd5b506101ce6004803603606081101561007457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001906401000000008111156100b157600080fd5b8201836020820111156100c357600080fd5b803590602001918460018302840111640100000000831117156100e557600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561014857600080fd5b82018360208201111561015a57600080fd5b8035906020019184600183028401116401000000008311171561017c57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610306565b005b3480156101dc57600080fd5b5061021f600480360360208110156101f357600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061039b565b604051808060200180602001838103835285818151815260200191508051906020019080838360005b83811015610263578082015181840152602081019050610248565b50505050905090810190601f1680156102905780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b838110156102c95780820151818401526020810190506102ae565b50505050905090810190601f1680156102f65780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b6040805190810160405280838152602001828152506000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008201518160000190805190602001906103759291906104ef565b5060208201518160010190805190602001906103929291906104ef565b50905050505050565b6000602052806000526040600020600091509050806000018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104475780601f1061041c57610100808354040283529160200191610447565b820191906000526020600020905b81548152906001019060200180831161042a57829003601f168201915b505050505090806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104e55780601f106104ba576101008083540402835291602001916104e5565b820191906000526020600020905b8154815290600101906020018083116104c857829003601f168201915b5050505050905082565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061053057805160ff191683800117855561055e565b8280016001018555821561055e579182015b8281111561055d578251825591602001919060010190610542565b5b50905061056b919061056f565b5090565b61059191905b8082111561058d576000816000905550600101610575565b5090565b9056fea165627a7a72305820c138683257ae2a7fbf476eb24c0f760b3f58dfc0a1c3bb450a06b4af750f55fd0029",
+  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806334b7899814610051578063a9583c22146101d0575b600080fd5b34801561005d57600080fd5b506101ce6004803603606081101561007457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001906401000000008111156100b157600080fd5b8201836020820111156100c357600080fd5b803590602001918460018302840111640100000000831117156100e557600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561014857600080fd5b82018360208201111561015a57600080fd5b8035906020019184600183028401116401000000008311171561017c57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610306565b005b3480156101dc57600080fd5b5061021f600480360360208110156101f357600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061039b565b604051808060200180602001838103835285818151815260200191508051906020019080838360005b83811015610263578082015181840152602081019050610248565b50505050905090810190601f1680156102905780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b838110156102c95780820151818401526020810190506102ae565b50505050905090810190601f1680156102f65780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b6040805190810160405280838152602001828152506000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008201518160000190805190602001906103759291906104ef565b5060208201518160010190805190602001906103929291906104ef565b50905050505050565b6000602052806000526040600020600091509050806000018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104475780601f1061041c57610100808354040283529160200191610447565b820191906000526020600020905b81548152906001019060200180831161042a57829003601f168201915b505050505090806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104e55780601f106104ba576101008083540402835291602001916104e5565b820191906000526020600020905b8154815290600101906020018083116104c857829003601f168201915b5050505050905082565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061053057805160ff191683800117855561055e565b8280016001018555821561055e579182015b8281111561055d578251825591602001919060010190610542565b5b50905061056b919061056f565b5090565b61059191905b8082111561058d576000816000905550600101610575565b5090565b9056fea165627a7a72305820c138683257ae2a7fbf476eb24c0f760b3f58dfc0a1c3bb450a06b4af750f55fd0029",
+  "sourceMap": "34:363:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;34:363:0;;;;;;;",
+  "deployedSourceMap": "34:363:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;222:172;;8:9:-1;5:2;;;30:1;27;20:12;5:2;222:172:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;222:172:0;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;222:172:0;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;222:172:0;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;222:172:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;222:172:0;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;222:172:0;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;222:172:0;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;222:172:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;222:172:0;;;;;;;;;;;;;;;;;;164:45;;8:9:-1;5:2;;;30:1;27;20:12;5:2;164:45:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;164:45:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;164:45:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;164:45:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;222:172;357:29;;;;;;;;;368:5;357:29;;;;375:10;357:29;;;330:7;:24;338:15;330:24;;;;;;;;;;;;;;;:56;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;222:172;;;:::o;164:45::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;34:363::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity >=0.4.22 <0.6.0;\r\ncontract Doctor {\r\n    \r\n    struct doctorData{\r\n        string name;\r\n        string specialty;\r\n    }\r\n    //adress & name\r\n    mapping(address => doctorData) public doctors;\r\n    \r\n    function addDoctor(address _doctorsAddress, string memory _name, string memory _specialty) public{\r\n        doctors[_doctorsAddress] = doctorData(_name, _specialty);\r\n    }\r\n}",
   "sourcePath": "C:/Users/Emy/Desktop/Proiect Licenta/EHR-dApp/contracts/Doctor.sol",
   "ast": {
     "absolutePath": "/C/Users/Emy/Desktop/Proiect Licenta/EHR-dApp/contracts/Doctor.sol",
     "exportedSymbols": {
       "Doctor": [
-        20
+        30
       ]
     },
-    "id": 21,
+    "id": 31,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -75,52 +85,117 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 20,
+        "id": 30,
         "linearizedBaseContracts": [
-          20
+          30
         ],
         "name": "Doctor",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
+            "canonicalName": "Doctor.doctorData",
+            "id": 6,
+            "members": [
+              {
+                "constant": false,
+                "id": 3,
+                "name": "name",
+                "nodeType": "VariableDeclaration",
+                "scope": 6,
+                "src": "91:11:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 2,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "91:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 5,
+                "name": "specialty",
+                "nodeType": "VariableDeclaration",
+                "scope": 6,
+                "src": "113:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 4,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "113:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "doctorData",
+            "nodeType": "StructDefinition",
+            "scope": 30,
+            "src": "63:74:0",
+            "visibility": "public"
+          },
+          {
             "constant": false,
-            "id": 5,
+            "id": 10,
             "name": "doctors",
             "nodeType": "VariableDeclaration",
-            "scope": 20,
-            "src": "78:41:0",
+            "scope": 30,
+            "src": "164:45:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_string_storage_$",
-              "typeString": "mapping(address => string)"
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_doctorData_$6_storage_$",
+              "typeString": "mapping(address => struct Doctor.doctorData)"
             },
             "typeName": {
-              "id": 4,
+              "id": 9,
               "keyType": {
-                "id": 2,
+                "id": 7,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "86:7:0",
+                "src": "172:7:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "78:26:0",
+              "src": "164:30:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_string_storage_$",
-                "typeString": "mapping(address => string)"
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_doctorData_$6_storage_$",
+                "typeString": "mapping(address => struct Doctor.doctorData)"
               },
               "valueType": {
-                "id": 3,
-                "name": "string",
-                "nodeType": "ElementaryTypeName",
-                "src": "97:6:0",
+                "contractScope": null,
+                "id": 8,
+                "name": "doctorData",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 6,
+                "src": "183:10:0",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
+                  "typeIdentifier": "t_struct$_doctorData_$6_storage_ptr",
+                  "typeString": "struct Doctor.doctorData"
                 }
               }
             },
@@ -129,14 +204,14 @@
           },
           {
             "body": {
-              "id": 18,
+              "id": 28,
               "nodeType": "Block",
-              "src": "203:51:0",
+              "src": "319:75:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 16,
+                    "id": 26,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -145,26 +220,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 12,
+                        "id": 19,
                         "name": "doctors",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5,
-                        "src": "214:7:0",
+                        "referencedDeclaration": 10,
+                        "src": "330:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_address_$_t_string_storage_$",
-                          "typeString": "mapping(address => string storage ref)"
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_doctorData_$6_storage_$",
+                          "typeString": "mapping(address => struct Doctor.doctorData storage ref)"
                         }
                       },
-                      "id": 14,
+                      "id": 21,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 13,
+                        "id": 20,
                         "name": "_doctorsAddress",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7,
-                        "src": "222:15:0",
+                        "referencedDeclaration": 12,
+                        "src": "338:15:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -175,57 +250,110 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "214:24:0",
+                      "src": "330:24:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_string_storage",
-                        "typeString": "string storage ref"
+                        "typeIdentifier": "t_struct$_doctorData_$6_storage",
+                        "typeString": "struct Doctor.doctorData storage ref"
                       }
                     },
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 15,
-                      "name": "_name",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 9,
-                      "src": "241:5:0",
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "id": 23,
+                          "name": "_name",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 14,
+                          "src": "368:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 24,
+                          "name": "_specialty",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 16,
+                          "src": "375:10:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        ],
+                        "id": 22,
+                        "name": "doctorData",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 6,
+                        "src": "357:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_doctorData_$6_storage_ptr_$",
+                          "typeString": "type(struct Doctor.doctorData storage pointer)"
+                        }
+                      },
+                      "id": 25,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "357:29:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_string_memory_ptr",
-                        "typeString": "string memory"
+                        "typeIdentifier": "t_struct$_doctorData_$6_memory",
+                        "typeString": "struct Doctor.doctorData memory"
                       }
                     },
-                    "src": "214:32:0",
+                    "src": "330:56:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_string_storage",
-                      "typeString": "string storage ref"
+                      "typeIdentifier": "t_struct$_doctorData_$6_storage",
+                      "typeString": "struct Doctor.doctorData storage ref"
                     }
                   },
-                  "id": 17,
+                  "id": 27,
                   "nodeType": "ExpressionStatement",
-                  "src": "214:32:0"
+                  "src": "330:56:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 19,
+            "id": 29,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addDoctor",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10,
+              "id": 17,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7,
+                  "id": 12,
                   "name": "_doctorsAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 19,
-                  "src": "151:23:0",
+                  "scope": 29,
+                  "src": "241:23:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -233,10 +361,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 6,
+                    "id": 11,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "151:7:0",
+                    "src": "241:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -248,11 +376,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 9,
+                  "id": 14,
                   "name": "_name",
                   "nodeType": "VariableDeclaration",
-                  "scope": 19,
-                  "src": "176:19:0",
+                  "scope": 29,
+                  "src": "266:19:0",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -260,10 +388,36 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 8,
+                    "id": 13,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "176:6:0",
+                    "src": "266:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16,
+                  "name": "_specialty",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 29,
+                  "src": "287:24:0",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 15,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "287:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -273,35 +427,35 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "150:46:0"
+              "src": "240:72:0"
             },
             "returnParameters": {
-              "id": 11,
+              "id": 18,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "203:0:0"
+              "src": "319:0:0"
             },
-            "scope": 20,
-            "src": "132:122:0",
+            "scope": 30,
+            "src": "222:172:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 21,
-        "src": "34:223:0"
+        "scope": 31,
+        "src": "34:363:0"
       }
     ],
-    "src": "0:257:0"
+    "src": "0:397:0"
   },
   "legacyAST": {
     "absolutePath": "/C/Users/Emy/Desktop/Proiect Licenta/EHR-dApp/contracts/Doctor.sol",
     "exportedSymbols": {
       "Doctor": [
-        20
+        30
       ]
     },
-    "id": 21,
+    "id": 31,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -324,52 +478,117 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 20,
+        "id": 30,
         "linearizedBaseContracts": [
-          20
+          30
         ],
         "name": "Doctor",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
+            "canonicalName": "Doctor.doctorData",
+            "id": 6,
+            "members": [
+              {
+                "constant": false,
+                "id": 3,
+                "name": "name",
+                "nodeType": "VariableDeclaration",
+                "scope": 6,
+                "src": "91:11:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 2,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "91:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 5,
+                "name": "specialty",
+                "nodeType": "VariableDeclaration",
+                "scope": 6,
+                "src": "113:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 4,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "113:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "doctorData",
+            "nodeType": "StructDefinition",
+            "scope": 30,
+            "src": "63:74:0",
+            "visibility": "public"
+          },
+          {
             "constant": false,
-            "id": 5,
+            "id": 10,
             "name": "doctors",
             "nodeType": "VariableDeclaration",
-            "scope": 20,
-            "src": "78:41:0",
+            "scope": 30,
+            "src": "164:45:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_string_storage_$",
-              "typeString": "mapping(address => string)"
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_doctorData_$6_storage_$",
+              "typeString": "mapping(address => struct Doctor.doctorData)"
             },
             "typeName": {
-              "id": 4,
+              "id": 9,
               "keyType": {
-                "id": 2,
+                "id": 7,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "86:7:0",
+                "src": "172:7:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "78:26:0",
+              "src": "164:30:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_string_storage_$",
-                "typeString": "mapping(address => string)"
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_doctorData_$6_storage_$",
+                "typeString": "mapping(address => struct Doctor.doctorData)"
               },
               "valueType": {
-                "id": 3,
-                "name": "string",
-                "nodeType": "ElementaryTypeName",
-                "src": "97:6:0",
+                "contractScope": null,
+                "id": 8,
+                "name": "doctorData",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 6,
+                "src": "183:10:0",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
+                  "typeIdentifier": "t_struct$_doctorData_$6_storage_ptr",
+                  "typeString": "struct Doctor.doctorData"
                 }
               }
             },
@@ -378,14 +597,14 @@
           },
           {
             "body": {
-              "id": 18,
+              "id": 28,
               "nodeType": "Block",
-              "src": "203:51:0",
+              "src": "319:75:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 16,
+                    "id": 26,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -394,26 +613,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 12,
+                        "id": 19,
                         "name": "doctors",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5,
-                        "src": "214:7:0",
+                        "referencedDeclaration": 10,
+                        "src": "330:7:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_address_$_t_string_storage_$",
-                          "typeString": "mapping(address => string storage ref)"
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_doctorData_$6_storage_$",
+                          "typeString": "mapping(address => struct Doctor.doctorData storage ref)"
                         }
                       },
-                      "id": 14,
+                      "id": 21,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 13,
+                        "id": 20,
                         "name": "_doctorsAddress",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7,
-                        "src": "222:15:0",
+                        "referencedDeclaration": 12,
+                        "src": "338:15:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -424,57 +643,110 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "214:24:0",
+                      "src": "330:24:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_string_storage",
-                        "typeString": "string storage ref"
+                        "typeIdentifier": "t_struct$_doctorData_$6_storage",
+                        "typeString": "struct Doctor.doctorData storage ref"
                       }
                     },
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 15,
-                      "name": "_name",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 9,
-                      "src": "241:5:0",
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "id": 23,
+                          "name": "_name",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 14,
+                          "src": "368:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 24,
+                          "name": "_specialty",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 16,
+                          "src": "375:10:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        ],
+                        "id": 22,
+                        "name": "doctorData",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 6,
+                        "src": "357:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_doctorData_$6_storage_ptr_$",
+                          "typeString": "type(struct Doctor.doctorData storage pointer)"
+                        }
+                      },
+                      "id": 25,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "357:29:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_string_memory_ptr",
-                        "typeString": "string memory"
+                        "typeIdentifier": "t_struct$_doctorData_$6_memory",
+                        "typeString": "struct Doctor.doctorData memory"
                       }
                     },
-                    "src": "214:32:0",
+                    "src": "330:56:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_string_storage",
-                      "typeString": "string storage ref"
+                      "typeIdentifier": "t_struct$_doctorData_$6_storage",
+                      "typeString": "struct Doctor.doctorData storage ref"
                     }
                   },
-                  "id": 17,
+                  "id": 27,
                   "nodeType": "ExpressionStatement",
-                  "src": "214:32:0"
+                  "src": "330:56:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 19,
+            "id": 29,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addDoctor",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 10,
+              "id": 17,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7,
+                  "id": 12,
                   "name": "_doctorsAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 19,
-                  "src": "151:23:0",
+                  "scope": 29,
+                  "src": "241:23:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -482,10 +754,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 6,
+                    "id": 11,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "151:7:0",
+                    "src": "241:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -497,11 +769,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 9,
+                  "id": 14,
                   "name": "_name",
                   "nodeType": "VariableDeclaration",
-                  "scope": 19,
-                  "src": "176:19:0",
+                  "scope": 29,
+                  "src": "266:19:0",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -509,10 +781,36 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 8,
+                    "id": 13,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "176:6:0",
+                    "src": "266:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16,
+                  "name": "_specialty",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 29,
+                  "src": "287:24:0",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 15,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "287:6:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -522,34 +820,41 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "150:46:0"
+              "src": "240:72:0"
             },
             "returnParameters": {
-              "id": 11,
+              "id": 18,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "203:0:0"
+              "src": "319:0:0"
             },
-            "scope": 20,
-            "src": "132:122:0",
+            "scope": 30,
+            "src": "222:172:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 21,
-        "src": "34:223:0"
+        "scope": 31,
+        "src": "34:363:0"
       }
     ],
-    "src": "0:257:0"
+    "src": "0:397:0"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x7Cd3d64bcef1B3c8C72d51350A67c18e1319d313",
+      "transactionHash": "0x1a591c2ced7ea6fb91bfb979881c0a05b738a7a2a641fe5eda127817c23ef37a"
+    }
+  },
   "schemaVersion": "3.0.1",
-  "updatedAt": "2019-03-02T14:22:50.696Z",
+  "updatedAt": "2019-03-03T11:41:53.450Z",
   "devdoc": {
     "methods": {}
   },
