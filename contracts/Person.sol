@@ -76,15 +76,17 @@ contract Person {
         }
         
         if(pos == 0 && doctorsAccess[0] != _doctorsAddress){
-            return false;
+            return (false);
         }
         
         doctorsAccess[pos] = doctorsAccess[doctorsAccess.length - 1];
         delete doctorsAccess[doctorsAccess.length - 1];
+        doctorsAccess.length--;
         
-        return true;
+        return (true);
     }
     
+
     //getters part
     function getFirstName() public view checkAccess returns (string memory _firstName){
         return(firstName);
@@ -119,6 +121,9 @@ contract Person {
     function getCity() public view checkAccess returns (string memory _city){
         return(city);
     }
+    function getDoctorsSize() public view checkAccess returns (uint  _doctorsSize){
+        return(doctorsAccess.length);
+    }
     
     //setters part
     function setEmail(string memory _email) public{
@@ -141,6 +146,5 @@ contract Person {
         require(msg.sender == owner, "Only owner can change this field");
         zip = _zip;
     }
-    
-    
+       
 }

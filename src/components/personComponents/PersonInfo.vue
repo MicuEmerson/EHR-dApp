@@ -1,5 +1,11 @@
 <template>
-  <form class="my-form">
+  <div>
+    <div v-if="loadingData == true" class="text-center" style="margin: 75px">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  <form v-if="loadingData == false" class="my-form">
     <!-- first-name / last-name -->
     <div class="form-row">
       <div class="form-group col-md-5">
@@ -98,6 +104,7 @@
       role="alert"
     >Successfully Updated</div>
   </form>
+  </div>
 </template>
 
 <script>
@@ -135,11 +142,12 @@ export default {
         zip: ""
       },
 
-      loading: 0
+      loading: 0,
+      loadingData: true
     };
   },
   mounted: function() {
-    this.$nextTick(async function() {
+     this.$nextTick(async function() {
       this.firstName = await PersonWeb3.getFirstName();
       this.lastName = await PersonWeb3.getLastName();
       this.SID = await PersonWeb3.getSID();
@@ -157,6 +165,8 @@ export default {
       this.changed.address = this.address;
       this.changed.city = this.selectedCity;
       this.changed.zip = this.zip;
+
+      this.loadingData = false;
     });
   },
   methods: {

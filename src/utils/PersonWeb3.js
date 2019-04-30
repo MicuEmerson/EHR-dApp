@@ -84,16 +84,58 @@ const App = {
     }
   },
 
+  getAllDoctors: async () => {
+    let nr = await App.person.getDoctorsSize({from: App.account});
+    let doctorsAddresses = [];
+
+    for(let i = 0; i < nr; i++){
+      doctorsAddresses.push(await App.person.doctorsAccess(i, {from: App.account}));
+    }
+
+    let doctorsDetails = [];
+    for(let i = 0; i < doctorsAddresses.length; i++){
+      let details = await App.checkDoctorAddress(doctorsAddresses[i], {from: App.account});
+      
+      let doctor = {
+        id : i,
+        address : doctorsAddresses[i],
+        name: details.name,
+        specialty: details.specialty
+      }
+
+      doctorsDetails.push(doctor);
+    };
+
+     console.log("dectorsDetails", doctorsDetails);
+    return doctorsDetails;
+
+  },
+
   checkDoctorAddress: async(doctorAddress) => {
     try{
       return await App.doctor.doctors(doctorAddress, {from: App.account});
     }
     catch(e){
-      return "error"
+      return "error";
     }
   },
-  addDoctor: async (doctorAddress) => {
 
+  addDoctor: async (doctorAddress) => {
+    try{
+      return await App.person.addDoctor(doctorAddress, {from: App.account});
+    }
+    catch(e){
+      return "error";
+    }
+  },
+
+  deleteDoctor: async (doctorAddress) => {
+    try{
+      return await App.person.removeDoctor(doctorAddress, {from: App.account});
+    }
+    catch(e){
+      return "error";
+    }
   },
 
   //getters part

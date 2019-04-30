@@ -10,20 +10,26 @@
           <th scope="col">Remove</th>
         </tr>
       </thead>
-      <tbody>
-        <tr v-for="doctor in mockDoctors" :key="doctor.id">
+      <tbody v-if="loading == false">
+        <tr v-for="doctor in doctors" :key="doctor.id">
           <td>{{doctor.name}}</td>
           <td>{{doctor.specialty}}</td>
           <td>{{doctor.address}}</td>
-          <td class="delete-icon" @click="deleteDoctor(doctor.id)">
+          <td class="delete-icon" @click="deleteDoctorModal(doctor)">
             <img src="/images/delete-icon.svg" width="30" height="26">
           </td>
         </tr>
       </tbody>
     </table>
 
+    <div v-if="loading == true" class="text-center" style="margin-bottom: 15px">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
     <!-- modal for delete button -->
-    <div v-if="showModal">
+    <div v-if="showModalDelete">
       <transition name="modal">
         <div class="modal-mask">
           <div class="modal-wrapper">
@@ -36,8 +42,32 @@
                   >Do you wanna to remove this doctor's access?</h6>
                 </div>
                 <div class="modal-footer">
-                  <button @click="cancelModal" type="button" class="btn btn-secondary">Cancel</button>
+                  <button @click="cancelModalDelete" type="button" class="btn btn-secondary">Cancel</button>
                   <button @click="deleteDoctor" type="button" class="btn btn-danger">Remove</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+    </div>
+
+  <!-- modal for add doctor -->
+    <div v-if="showModalAdd">
+      <transition name="modal">
+        <div class="modal-mask">
+          <div class="modal-wrapper">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h6
+                    class="modal-title"
+                    id="exampleModalLabel"
+                  >Do you wanna to add <b>{{doctor.name}}</b> with specialty <b>{{doctor.specialty}}</b>?</h6>
+                </div>
+                <div class="modal-footer">
+                  <button @click="cancelModalAdd" type="button" class="btn btn-secondary">Cancel</button>
+                  <button @click="addDoctor" type="button" class="btn btn-danger">Add</button>
                 </div>
               </div>
             </div>
@@ -58,69 +88,117 @@
             class="btn btn-outline-secondary"
             type="button"
             title="Copy Address"
-            @click="addDoctor()"
+            @click="addDoctorModal()"
           >
             <img src="/images/add-icon.png" width="30" height="26">
           </button>
         </div>
       </div>
     </div>
+    <div
+        v-if="error"
+        class="alert alert-danger"
+        role="alert"
+        >{{this.errorMsg}}
+    </div>
+
+   
   </div>
 </template>
 
 
 <script>
 import PersonWeb3 from "../../utils/PersonWeb3.js";
-import FieldValidator from "../../utils/FieldValidator.js";
 export default {
   name: "PacientDoctorsAccess",
   data() {
     return {
-      loading: 0,
-      showModal: false,
+      loading: true,
+      showModalDelete: false,
+      showModalAdd: false,
       doctorAddress: "",
-      nada: "",
-      mockDoctors: [
-        {
-          id: 0,
-          name: "Mark",
-          specialty: "Dermatology",
-          address: "0x28C7B4047Ac19F69BaE94aEB2Ace6f5b17B62908"
-        },
-        {
-          id: 1,
-          name: "Johnny",
-          specialty: "Cardiology",
-          address: "0x28C7B4047Ac19F69BaE94aEB2Ace6f5b17B62908"
-        },
-        {
-          id: 2,
-          name: "Arthur ",
-          specialty: "Imunology",
-          address: "0x28C7B4047Ac19F69BaE94aEB2Ace6f5b17B62908"
-        }
-      ]
+      doctor: "",
+      doctors: [],
+      errorMsg: "cf",
+      error: false
     };
   },
   mounted: function() {
-    this.$nextTick(async function() {});
+    this.$nextTick(async function() {
+      this.doctors = await PersonWeb3.getAllDoctors();
+      this.loading = false;
+    });
   },
   methods: {
+
+    checkDuplicateDoctor: function(){
+      for(let i = 0; i < this.doctors.length; i++){
+        if(this.doctors[i].address == this.doctorAddress){
+          return true;
+        }
+      }
+      return false;
+    },
+
+    addDoctorModal: async function(){
+      //tre sa verific daca e doctor si nu este deja adaugat
+      if(!this.checkDuplicateDoctor()){
+        
+        this.doctor = await PersonWeb3.checkDoctorAddress(this.doctorAddress);
+        console.log('doctor', this.doctor);
+        if(this.doctor == "error"){
+          this.errorMsg = "Invalid address!"
+          this.error = true;
+        }
+        else{
+          if(this.doctor.name == ""){
+            this.errorMsg = "This address is not a doctor address!"
+            this.error = true;
+          }
+          else{
+            this.errorMsg = ""
+            this.error = false;
+            this.showModalAdd = true;
+          }
+        }
+      }
+      else{
+        this.errorMsg = "This doctor already exist in access list!"
+        this.error = true;
+      }
+    },
+
     addDoctor: async function(){
-      this.nada = await PersonWeb3.checkDoctorAddress(this.doctorAddress);
-      console.log(this.nada);
-      // PersonWeb3.addDoctor(this.doctorAddress);
+      await PersonWeb3.addDoctor(this.doctorAddress);
+      
+      let id = this.doctors.length == 0 ? 0 : this.doctors[this.doctors.length - 1].id + 1;
+      
+      this.$set(this.doctors, this.doctors.length, {
+        id: id,
+        address: this.doctorAddress,
+        name: this.doctor.name,
+        specialty: this.doctor.specialty
+      })
+
+      this.doctorAddress = "";
+      this.showModalAdd = false;
     },
-    deleteDoctor: function(id) {
-      console.log("deleteDoctor with id:" + id);
-      this.showModal = true;
+
+    deleteDoctorModal: function(doctor) {
+      this.showModalDelete = true;
+      this.doctor = doctor;
     },
-    deleteModal: function() {
-      console.log("deleteModal");
+    deleteDoctor: async function(){
+      console.log('deleteDoctor', await PersonWeb3.deleteDoctor(this.doctor.address));
+      this.$delete(this.doctors, this.doctor.id)
+      this.showModalDelete = false;
     },
-    cancelModal: function() {
-      console.log("cancelModal");
-      this.showModal = false;
+
+    cancelModalDelete: function() {
+      this.showModalDelete = false;
+    },
+    cancelModalAdd: function() {
+      this.showModalAdd = false;
     }
   }
 };
