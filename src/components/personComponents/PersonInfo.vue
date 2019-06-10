@@ -10,11 +10,11 @@
     <div class="form-row">
       <div class="form-group col-md-5">
         <label>First Name</label>
-        <input type="text" class="form-control" v-model="firstName" disabled>
+        <input style="cursor: not-allowed" type="text" class="form-control" v-model="firstName" disabled>
       </div>
-      <div class="form-group col-md-5">
+      <div class="form-group col-md-5" >
         <label>Last Name</label>
-        <input type="text" class="form-control" v-model="lastName" disabled>
+        <input style="cursor: not-allowed" type="text" class="form-control" v-model="lastName" disabled>
       </div>
     </div>
 
@@ -22,7 +22,7 @@
     <div class="form-row">
       <div class="form-group col-md-10">
         <label>SID</label>
-        <input type="text" class="form-control" v-model="SID" disabled>
+        <input style="cursor: not-allowed" type="text" class="form-control" v-model="SID" disabled>
       </div>
     </div>
 
@@ -30,17 +30,17 @@
     <div class="form-row">
       <div class="form-group col-md-4">
         <label>Year</label>
-        <input type="text" class="form-control" v-model="selectedYear" disabled>
+        <input style="cursor: not-allowed" type="text" class="form-control" v-model="selectedYear" disabled>
       </div>
 
       <div class="form-group col-md-3">
         <label>Month</label>
-        <input type="text" class="form-control" v-model="selectedMonth" disabled>
+        <input style="cursor: not-allowed" type="text" class="form-control" v-model="selectedMonth" disabled>
       </div>
 
       <div class="form-group col-md-3">
         <label>Day</label>
-        <input type="text" class="form-control" v-model="selectedDay" disabled>
+        <input style="cursor: not-allowed" type="text" class="form-control" v-model="selectedDay" disabled>
       </div>
     </div>
 
@@ -76,7 +76,7 @@
       </div>
       <div class="form-group col-md-5">
         <label>Zip</label>
-        <input type="text" class="form-control" v-model="zip">
+        <input type="text" class="form-control" v-model="zip" :class="validators.zip">
         <div class="invalid-feedback">Zip code can contain only digits.</div>
       </div>
     </div>
@@ -108,12 +108,14 @@
 </template>
 
 <script>
-import PersonWeb3 from "../../utils/PersonWeb3.js";
+// import PersonWeb3 from "../../utils/PersonWeb3.js";
+import Pacient from "../../utils/Pacient.js";
 import FieldValidator from "../../utils/FieldValidator.js";
 export default {
   name: "PacientInfo",
   data() {
     return {
+      pacient: "",
       firstName: "",
       lastName: "",
       SID: "",
@@ -148,17 +150,18 @@ export default {
   },
   mounted: function() {
      this.$nextTick(async function() {
-      this.firstName = await PersonWeb3.getFirstName();
-      this.lastName = await PersonWeb3.getLastName();
-      this.SID = await PersonWeb3.getSID();
-      this.selectedYear = await PersonWeb3.getYear();
-      this.selectedMonth = await PersonWeb3.getMonth();
-      this.selectedDay = await PersonWeb3.getDay();
-      this.email = await PersonWeb3.getEmail();
-      this.telephone = await PersonWeb3.getTelephone();
-      this.address = await PersonWeb3.getPersonAddress();
-      this.selectedCity = await PersonWeb3.getCity();
-      this.zip = await PersonWeb3.getZip();
+      this.pacient = new Pacient();
+      this.firstName = await this.pacient.getFirstName();
+      this.lastName = await this.pacient.getLastName();
+      this.SID = await this.pacient.getSID();
+      this.selectedYear = await this.pacient.getYear();
+      this.selectedMonth = await this.pacient.getMonth();
+      this.selectedDay = await this.pacient.getDay();
+      this.email = await this.pacient.getEmail();
+      this.telephone = await this.pacient.getTelephone();
+      this.address = await this.pacient.getPersonAddress();
+      this.selectedCity = await this.pacient.getCity();
+      this.zip = await this.pacient.getZip();
 
       this.changed.email = this.email;
       this.changed.telephone = this.telephone;
@@ -174,27 +177,28 @@ export default {
       if (this.checkFieldValidity()) {
         this.loading = 1;
         if (this.changed.email != this.email) {
-          await PersonWeb3.setEmail(this.email);
+          await this.pacient.setEmail(this.email);
           this.changed.email = this.email;
         }
         if (this.changed.telephone != this.telephone) {
-          await PersonWeb3.setTelephone(this.telephone);
+          await this.pacient.setTelephone(this.telephone);
            this.changed.telephone = this.telephone;
         }
         if (this.changed.address != this.address) {
-          await PersonWeb3.setAddress(this.address);
+          await this.pacient.setAddress(this.address);
           this.changed.address = this.address;
         }
         if (this.changed.zip != this.zip) {
-          await PersonWeb3.setZip(this.zip);
+          await this.pacient.setZip(this.zip);
           this.changed.zip = this.zip;
         }
         if (this.changed.city != this.selectedCity) {
-          await PersonWeb3.setCity(this.selectedCity);
+          await this.pacient.setCity(this.selectedCity);
           this.changed.city = this.city;
         }
         this.loading = 2;
       }
+     
     },
     checkFieldValidity: function() {
       let fieldValidator = new FieldValidator();

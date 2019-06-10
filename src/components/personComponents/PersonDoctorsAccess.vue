@@ -109,10 +109,12 @@
 
 <script>
 import PersonWeb3 from "../../utils/PersonWeb3.js";
+import Pacient from "../../utils/Pacient.js";
 export default {
   name: "PacientDoctorsAccess",
   data() {
     return {
+      pacient: "",
       loading: true,
       showModalDelete: false,
       showModalAdd: false,
@@ -125,7 +127,8 @@ export default {
   },
   mounted: function() {
     this.$nextTick(async function() {
-      this.doctors = await PersonWeb3.getAllDoctors();
+      this.pacient = new Pacient();
+      this.doctors = await this.pacient.getAllDoctors();
       this.loading = false;
     });
   },
@@ -144,8 +147,7 @@ export default {
       //tre sa verific daca e doctor si nu este deja adaugat
       if(!this.checkDuplicateDoctor()){
         
-        this.doctor = await PersonWeb3.checkDoctorAddress(this.doctorAddress);
-        console.log('doctor', this.doctor);
+        this.doctor = await this.pacient.checkDoctorAddress(this.doctorAddress);
         if(this.doctor == "error"){
           this.errorMsg = "Invalid address!"
           this.error = true;
@@ -169,7 +171,7 @@ export default {
     },
 
     addDoctor: async function(){
-      await PersonWeb3.addDoctor(this.doctorAddress);
+      await this.pacient.addDoctor(this.doctorAddress);
       
       let id = this.doctors.length == 0 ? 0 : this.doctors[this.doctors.length - 1].id + 1;
       
@@ -189,7 +191,7 @@ export default {
       this.doctor = doctor;
     },
     deleteDoctor: async function(){
-      console.log('deleteDoctor', await PersonWeb3.deleteDoctor(this.doctor.address));
+      await this.pacient.deleteDoctor(this.doctor.address);
       this.$delete(this.doctors, this.doctor.id)
       this.showModalDelete = false;
     },

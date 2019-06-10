@@ -56,7 +56,8 @@
 </template>
 
 <script>
-import PersonWeb3 from "../utils/PersonWeb3.js";
+// import PersonWeb3 from "../utils/PersonWeb3.js";
+import Pacient from "../utils/Pacient.js";
 export default {
   name: "Pacient",
   data() {
@@ -64,16 +65,20 @@ export default {
       smAddress: "",
       firstName: "",
       loading: 0,
+      pacient: ""
     };
   },
   mounted: function() {
-    this.$nextTick(function() {
-      PersonWeb3.load();
+    this.$nextTick(async function() {
+      this.pacient = new Pacient();
+      if(typeof this.pacient.contracts == 'undefined'){
+        await this.pacient.loadContracts();
+      }
     });
   },
   methods: {
     login: async function() {
-      this.firstName = await PersonWeb3.getAccess(this.smAddress);
+      this.firstName = await this.pacient.getAccess(this.smAddress);
       if (this.firstName !== "error"){
         this.loading = 1;
       }

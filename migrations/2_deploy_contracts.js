@@ -3,8 +3,8 @@ var Doctor = artifacts.require("./Doctor.sol");
 module.exports = function(deployer) {
   deployer.deploy(Doctor).then(function(instance){
     
-    instance.addDoctor("0x5F740C9Ab9C1A248d8a0268d811399743fB969E1", "Dr. Eric Genden", "Cardiology");
-    instance.addDoctor("0xA90dB22889E86218d670421e28e422758B8E3e0a", "Dr. Denton Cooley", "Dermatology");
-    instance.addDoctor("0xB9a66a0622DCB565A91F5ff76c1DA952caee7AD2", "Dr. Ben Carson", "Cardiology");
+    instance.addDoctor("0x2e75e13307A932DbfB9B6Ca2031a08dB0875e097", "Dr. Eric Genden", "Cardiology");
+    instance.addDoctor("0x2483E2c5850149dD9Ad55Fe302bB718bB91B91aC", "Dr. Denton Cooley", "Dermatology");
+    instance.addDoctor("0xE2Ec7C3117229B67937D9Dc605141de5296e8878", "Dr. Ben Carson", "Cardiology");
   });
 };
