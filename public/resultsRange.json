@@ -1,0 +1,122 @@
+{
+  "Total Cholesterol":{
+    "up": 200,
+    "down": 0,
+    "unit": "mg/dL",
+    "range": "< 200 mg/dL"
+  },
+  "LDL (low-density lipoprotein)":{
+    "up": 100,
+    "down": 0,
+    "unit": "mg/dL",
+    "range": "< 100 mg/dL"
+  },
+  "HDL (high-density lipoprotein)":{
+    "up": 1000,
+    "down": 60,
+    "unit": "mg/dL",
+    "range": "> 60 mg/dL"
+  },
+  "Calcium":{
+    "up": 10.5,
+    "down": 8.5,
+    "unit": "mg/dL",
+    "range": "8.5 - 10.5  mg/dL"
+  },
+  "Sodium":{
+    "up": 145,
+    "down": 135,
+    "unit": "mEq/L",
+    "range": "135 - 145 mEq/L"
+  },
+  "Potassium":{
+    "up": 5.2,
+    "down": 3.6,
+    "unit": "mmol/L",
+    "range": "3.6 - 5.2 mmol/L"
+  },
+  "Magnesium":{
+    "up": 2.4,
+    "down": 1.7,
+    "unit": "mg/dL",
+    "range": "1.7 - 2.4 mg/dL"
+  },
+  "Chloride":{
+    "up": 106,
+    "down": 98,
+    "unit": "mmol/L",
+    "range": "98 - 106 mmol/L"
+  },
+  "Glucose":{
+    "up": 5.9,
+    "down": 4.0,
+    "unit": "mmol/L",
+    "range": "4.0 - 5.9 mmol/L"
+  },
+  "Hemoglobin A1C (HbA1c)":{
+    "up": 5.6,
+    "down": 4,
+    "unit": "%",
+    "range": "4% - 5.6%"
+  },
+  "Erythrocytes":{
+    "up": 6.1,
+    "down": 4.7,
+    "unit": "mcL",
+    "range": "4.7 - 6.1 / mcL"
+  },
+  "Leukocytes":{
+    "up": 10000,
+    "down": 5000,
+    "unit": "mcL",
+    "range": "5,000 - 10,000 / mcL"
+  },
+  "Thrombocytes":{
+    "up": 450000,
+    "down": 150000,
+    "unit": "mcL",
+    "range": "150,000 - 450,000 / mcL"
+  },
+  "Hemoglobin (Hb)":{
+    "up": 5.6,
+    "down": 4,
+    "unit": "%",
+    "range": "4% - 5.6%"
+  },
+  "Hematocrit (Ht)":{
+    "up": 17.5,
+    "down": 13.5,
+    "unit": "g/dL",
+    "range": "13.5 – 17.5 g/dL"
+  },
+  "Mean Corpuscular Volume (MCV)":{
+    "up": 33,
+    "down": 27,
+    "unit": "pg/cell",
+    "range": "27 - 33 pg/cell"
+  },
+  "TSH (Thyroid Stimulating Hormone)":{
+    "up": 4.0,
+    "down": 0.4,
+    "unit": "mU/L",
+    "range": "0.4 – 4.0 mU/L"
+  },
+  "FT4 (free thyroxine)":{
+    "up": 1.9,
+    "down": 0.7,
+    "unit": "ng/dL",
+    "range": "0.7 - 1.9 ng/dL"
+  },
+  "T4 (Thyroxine)":{
+    "up": 12,
+    "down": 4.6,
+    "unit": "ug/dL",
+    "range": "4.6 - 12 ug/dL"
+  },
+  "T3 (Triiodothyronine)":{
+    "up": 180,
+    "down": 80,
+    "unit": "ng/dL",
+    "range": "80 - 180 ng/dL"
+  }
+}

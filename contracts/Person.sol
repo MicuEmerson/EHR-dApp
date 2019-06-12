@@ -49,6 +49,11 @@ contract Person {
         require(getAccess() == true, "You don't have access to this field");
         _;
     }
+    
+    modifier checkAccessDoctor(){
+        require(getAccessDoctor() == true, "You don't have access to this method");
+        _;
+    }
 
     function getAccess() public view returns(bool access){
         //here will be more validation, but for now I just added this one
@@ -58,6 +63,19 @@ contract Person {
             }
         }
         return (msg.sender == owner);
+    }
+    
+    function getAccessDoctor() public view returns(bool access){
+        for(uint i = 0; i < doctorsAccess.length; i++){
+            if(doctorsAccess[i] == msg.sender){
+                return(true);
+            }
+        }
+        return (false);
+    }
+    
+    function addMedicalData(string memory _mData) checkAccessDoctor public{
+        medicalData.push(_mData);
     }
     
     function addDoctor(address _doctorsAddress) public{
@@ -124,6 +142,12 @@ contract Person {
     function getDoctorsSize() public view checkAccess returns (uint  _doctorsSize){
         return(doctorsAccess.length);
     }
+    function getMedicalDataSize() public view checkAccess returns (uint  _medicalDataSize){
+        return(medicalData.length);
+    }
+    function getMedicalDataIndex(uint idx) public view checkAccess returns (string memory _medData){
+        return(medicalData[idx]);
+    }
     
     //setters part
     function setEmail(string memory _email) public{
@@ -146,5 +170,5 @@ contract Person {
         require(msg.sender == owner, "Only owner can change this field");
         zip = _zip;
     }
-       
+        
 }

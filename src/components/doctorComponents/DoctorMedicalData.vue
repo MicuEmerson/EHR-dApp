@@ -91,15 +91,15 @@
                   <div style="margin-left: 10px">
                     <div class="text-titlu">
                       First Name:
-                      <span style="font-weight: bold">{{this.pacient.firstName}}</span>
+                      <span style="font-weight: bold">{{this.doctor.firstName}}</span>
                     </div>
                     <div class="text-titlu">
                       Last Name:
-                      <span style="font-weight: bold">{{this.pacient.lastName}}</span>
+                      <span style="font-weight: bold">{{this.doctor.lastName}}</span>
                     </div>
                     <div class="text-titlu">
                       SID:
-                      <span style="font-weight: bold">{{this.pacient.sid}}</span>
+                      <span style="font-weight: bold">{{this.doctor.sid}}</span>
                     </div>
                     <div class="text-titlu">
                       Birthday:
@@ -166,13 +166,13 @@
 
 
 <script>
-import Pacient from "../../utils/Pacient.js";
+import Doctor from "../../utils/Doctor.js";
 import ResultsRange from "../../../public/resultsRange.json";
 export default {
-  name: "PersonMedicalData",
+  name: "DoctorMedicalData",
   data() {
     return {
-      pacient: "",
+      doctor: "",
       resultRange: "",
       currMedData: "",
       medData: [],
@@ -200,8 +200,8 @@ export default {
   },
   mounted: function() {
     this.$nextTick(async function() {
-      this.pacient = await new Pacient();
-      this.medData = await this.pacient.getAllMedicalData();
+      this.doctor = await new Doctor();
+      this.medData = await this.doctor.getAllMedicalData();
       //   medData.sort(function(a, b) {
       //     return b.date - a.date;
       //   });
@@ -318,7 +318,7 @@ export default {
       );
     },
     personBirthday() {
-      return this.pacient.year + "-" + this.pacient.month + "-" + this.pacient.day;
+      return this.doctor.year + "-" + this.doctor.month + "-" + this.doctor.day;
     }
   }
 };

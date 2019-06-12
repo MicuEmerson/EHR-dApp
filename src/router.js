@@ -4,6 +4,9 @@ import Home from './views/Home.vue'
 import PersonInfo from './components/personComponents/PersonInfo.vue'
 import PersonDoctorsAccess from './components/personComponents/PersonDoctorsAccess.vue'
 import PersonMedicalData from './components/personComponents/PersonMedicalData.vue'
+import DoctorPersonInfo from './components/doctorComponents/DoctorPersonInfo.vue'
+import DoctorAddData from './components/doctorComponents/DoctorAddData.vue'
+import DoctorMedicalData from './components/doctorComponents/DoctorMedicalData.vue'
 
 Vue.use(Router)
 
@@ -36,7 +39,21 @@ export default new Router({
     {
       path: '/doctor',
       name: 'doctor',
-      component: () => import('./views/Doctor.vue')
+      component: () => import('./views/Doctor.vue'),
+      children: [
+        {
+          path: '',
+          component: DoctorPersonInfo
+        },
+        {
+          path: 'medical',
+          component: DoctorMedicalData
+        },
+        {
+          path: 'newdata',
+          component: DoctorAddData
+        }
+      ]
     },
     {
       path: '/register',

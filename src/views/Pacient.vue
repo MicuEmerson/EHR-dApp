@@ -97,6 +97,7 @@ export default {
   border: 1px solid lightgray;
   padding: 20px;
   margin-bottom: 40px;
+  background-color: whitesmoke;
 }
 h2 {
   text-align: center;

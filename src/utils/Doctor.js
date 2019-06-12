@@ -5,7 +5,7 @@ var TruffleContract = require("truffle-contract");
 
 let instance = null;
 
-export default class Pacient {
+export default class Doctor {
 
     constructor() {
         if (!instance) {
@@ -31,17 +31,20 @@ export default class Pacient {
         this.doctor = await this.contracts.Doctor.deployed();
     }
 
-    async createNewPacient(firstName, lastName, SID, year, month, day, email, phone, address, city, zip) {
-        this.person = await this.contracts.Person.new(firstName, lastName, SID, year, month, day, email,
-            phone, address, city, zip, { from: this.web3Wrapper.account });
-        return this.person.address;
+    async checkDoctorAddress() {
+        try {
+            this.doctorName = "";
+            let x = await this.doctor.doctors(this.web3Wrapper.account, { from: this.web3Wrapper.account });
+            this.doctorName = x.name;
+            return x;
+        }
+        catch (e) {
+            return "error";
+        }
     }
 
-    //this function will be called first time time when pacient enter a smart-contract adddress
-    // and also will cache smart-contract address and Person smart-contract from blockchain
     async getAccess(contractAddress) {
         try {
-            this.person = await this.contracts.Person.at(contractAddress);
             this.person = await this.contracts.Person.at(contractAddress);
             this.firstName = await this.person.getFirstName({ from: this.web3Wrapper.account });
             this.lastName = await this.person.getLastName({ from: this.web3Wrapper.account });
@@ -50,6 +53,15 @@ export default class Pacient {
             this.month = await this.person.getMonth({ from: this.web3Wrapper.account });
             this.day = await this.person.getDay({ from: this.web3Wrapper.account });
             return this.firstName;
+        }
+        catch (e) {
+            return "error";
+        }
+    }
+
+    async addMedicalData(medicalData){
+        try{
+            await this.person.addMedicalData(medicalData, {from: this.web3Wrapper.account});
         }
         catch (e) {
             return "error";
@@ -66,58 +78,6 @@ export default class Pacient {
         }
 
         return medicalDatas;
-    }
-
-    async getAllDoctors() {
-        let nr = await this.person.getDoctorsSize({ from: this.web3Wrapper.account });
-        let doctorsAddresses = [];
-
-        for (let i = 0; i < nr; i++) {
-            doctorsAddresses.push(await this.person.doctorsAccess(i, { from: this.web3Wrapper.account }));
-        }
-
-        let doctorsDetails = [];
-        for (let i = 0; i < doctorsAddresses.length; i++) {
-            let details = await this.checkDoctorAddress(doctorsAddresses[i], { from: this.web3Wrapper.account });
-
-            let doctor = {
-                id: i,
-                address: doctorsAddresses[i],
-                name: details.name,
-                specialty: details.specialty
-            }
-
-            doctorsDetails.push(doctor);
-        };
-
-        return doctorsDetails;
-    }
-
-    async checkDoctorAddress(doctorAddress) {
-        try {
-            return await this.doctor.doctors(doctorAddress, { from: this.web3Wrapper.account });
-        }
-        catch (e) {
-            return "error";
-        }
-    }
-
-    async addDoctor(doctorAddress) {
-        try {
-            return await this.person.addDoctor(doctorAddress, { from: this.web3Wrapper.account });
-        }
-        catch (e) {
-            return "error";
-        }
-    }
-
-    async deleteDoctor(doctorAddress) {
-        try {
-            return await this.person.removeDoctor(doctorAddress, { from: this.web3Wrapper.account });
-        }
-        catch (e) {
-            return "error";
-        }
     }
 
     //getters part
@@ -153,23 +113,6 @@ export default class Pacient {
     }
     async getZip() {
         return await this.person.getZip({ from: this.web3Wrapper.account });
-    }
-
-    //setters part
-    async setEmail(email) {
-        return await this.person.setEmail(email, { from: this.web3Wrapper.account });
-    }
-    async setTelephone(telephone) {
-        return await this.person.setTelephone(telephone, { from: this.web3Wrapper.account });
-    }
-    async setAddress(address) {
-        return await this.person.setAddress(address, { from: this.web3Wrapper.account });
-    }
-    async setCity(city) {
-        return await this.person.setCity(city, { from: this.web3Wrapper.account });
-    }
-    async setZip(zip) {
-        return await this.person.setZip(zip, { from: this.web3Wrapper.account });
     }
 
 }
