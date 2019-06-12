@@ -12,13 +12,13 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+    // {
+    //   path: '/',
+    //   name: 'home',
+    //   component: Home
+    // },
     {
       path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/pacient',
       name: 'pacient',
       component: () => import('./views/Pacient.vue'),
       children: [

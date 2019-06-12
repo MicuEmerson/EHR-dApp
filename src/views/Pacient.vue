@@ -35,14 +35,14 @@
         <div class="pacient-layout">
           <div class="pacient-menu">
             <ul class="list-group">
-              <li class="list-group-item">
-                <router-link class="nav-link" to="/pacient">Info</router-link>
+              <li class="list-group-item" @click="selected(1)" :style="{'background-color': one, 'border-bottom': '1px solid #dee2e6'}">
+                <router-link class="nav-link" to="/">Info</router-link>
               </li>
-              <li class="list-group-item">
-                <router-link class="nav-link" to="/pacient/medical">Medical Data</router-link>
+              <li class="list-group-item" @click="selected(2)" :style="{'background-color': two, 'border-bottom': '1px solid #dee2e6'}">
+                <router-link class="nav-link" to="/medical">Medical Data</router-link>
               </li>
-              <li class="list-group-item">
-                <router-link class="nav-link" to="/pacient/doctors">Doctors Access</router-link>
+              <li class="list-group-item" @click="selected(3)" :style="{'background-color': three, 'border-bottom': '1px solid #dee2e6'}">
+                <router-link class="nav-link" to="/doctors">Doctors Access</router-link>
               </li>
             </ul>
           </div>
@@ -65,7 +65,10 @@ export default {
       smAddress: "",
       firstName: "",
       loading: 0,
-      pacient: ""
+      pacient: "",
+      one: "whitesmoke",
+      two: "white",
+      three: "white",
     };
   },
   mounted: function() {
@@ -86,6 +89,11 @@ export default {
         this.loading = 2;
       }
     },
+    selected(id){
+      this.one = id == 1 ?  "whitesmoke" : "white";
+      this.two = id == 2 ?  "whitesmoke" : "white";
+      this.three = id == 3 ?  "whitesmoke" : "white";
+    }
   }
 };
 </script>

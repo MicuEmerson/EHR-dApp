@@ -32,13 +32,13 @@
           <div class="doctor-layout">
             <div class="doctor-menu">
               <ul class="list-group">
-                <li class="list-group-item">
+                <li class="list-group-item"  @click="selected(1)" :style="{'background-color': one, 'border-bottom': '1px solid #dee2e6'}">
                   <router-link class="nav-link" to="/doctor">Pacient Info</router-link>
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item"  @click="selected(2)" :style="{'background-color': two, 'border-bottom': '1px solid #dee2e6'}">
                   <router-link class="nav-link" to="/doctor/medical">Previous Medical Data</router-link>
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item"  @click="selected(3)" :style="{'background-color': three, 'border-bottom': '1px solid #dee2e6'}">
                   <router-link class="nav-link" to="/doctor/newdata">Add Medical Data</router-link>
                 </li>
 
@@ -71,7 +71,10 @@ export default {
       loading: 0,
       doctorLogin: 0,
       firstName: "",
-      doctor: ""
+      doctor: "",
+      one: "whitesmoke",
+      two: "white",
+      three: "white",
     };
   },
   mounted: function() {
@@ -100,6 +103,11 @@ export default {
       } else {
         this.doctorLogin = 2;
       }
+    },
+    selected(id){
+      this.one = id == 1 ?  "whitesmoke" : "white";
+      this.two = id == 2 ?  "whitesmoke" : "white";
+      this.three = id == 3 ?  "whitesmoke" : "white";
     }
   }
 };
