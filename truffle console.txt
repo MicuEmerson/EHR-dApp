@@ -1,0 +1,36 @@
+factory ne da o addresa a contractului Person
+sa luam efectiv contractul trebuie sa apelam 
+Person.at(addresaDataDeFactoryPtContractulPerson)
+
+
+//consola
+truffle compile = ne genereaza artefacte in /build de tip .json pentru fiecare contract in parte care il avem in /contracts
+
+truffle migrate = efectiv ne creeaza contractele in blockchainul nostru (tranzactie!)
+                   migrate ne face si "linking" adica ne atribuie o adresa la contractul respectiv,
+                   pentru a putea fi folosit direct in js fara sa mai punem noi adresa contractului cu MyContract.at(adresa)...
+
+
+//cod js
+  MyContract.new() = ne creeaza un nou contract de tip MyContract in blockchain
+  MyContract.at(address) = ne aduce in blockchain datele despre MyContract-ul nostru corespondend adresei address
+  MyContract.deployed() = ne aduce contractul care l-am migrat de pe blockchain (contractul asta are adresa pusa deja)
+
+https://truffleframework.com/docs/truffle/getting-started/running-migrations#deployer-api = ma ajuta sa deployez un contract MyContract cu Truffle
+                                                                                            in folderul de migration si ii pot da si parametri, e bun pentru
+											    contract de tip Person care are argumente in constructor si asa pot sa creez
+ 											    cel putin un contract Person care pe urma il pot folosi in cod sa creez
+                                                                                            noi contract person cu Person.new(args...) 
+
+
+
+
+//de citit vuex https://vuex.vuejs.org/
+//de citit routes https://vuejs.org/v2/guide/routing.html
+//de citit https://solidity.readthedocs.io/en/v0.5.4/index.html
+
+
+vue+web3 = https://www.youtube.com/watch?v=M1-ODMDhQSc
+           https://vuejsexamples.com/ // doar exemple de componente vue
+           https://itnext.io/create-your-first-ethereum-dapp-with-web3-and-vue-js-part-2-52248a74d58a
+           https://www.udemy.com/ethereum-and-solidity-build-dapp-with-vuejs/
