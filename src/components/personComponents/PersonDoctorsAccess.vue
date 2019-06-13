@@ -38,7 +38,6 @@
                 <div class="modal-header">
                   <h6
                     class="modal-title"
-                    id="exampleModalLabel"
                   >Do you wanna to remove this doctor's access?</h6>
                 </div>
                 <div class="modal-footer">
@@ -52,7 +51,7 @@
       </transition>
     </div>
 
-  <!-- modal for add doctor -->
+    <!-- modal for add doctor -->
     <div v-if="showModalAdd">
       <transition name="modal">
         <div class="modal-mask">
@@ -60,10 +59,11 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h6
-                    class="modal-title"
-                    id="exampleModalLabel"
-                  >Do you wanna to add <b>{{doctor.name}}</b> with specialty <b>{{doctor.specialty}}</b>?</h6>
+                  <h6 class="modal-title">
+                    Do you wanna to add
+                    <b>{{doctor.name}}</b> with specialty
+                    <b>{{doctor.specialty}}</b>?
+                  </h6>
                 </div>
                 <div class="modal-footer">
                   <button @click="cancelModalAdd" type="button" class="btn btn-secondary">Cancel</button>
@@ -95,14 +95,11 @@
         </div>
       </div>
     </div>
-    <div
-        v-if="error"
-        class="alert alert-danger"
-        role="alert"
-        >{{this.errorMsg}}
-    </div>
-
-   
+    <div v-if="error" class="alert alert-danger" role="alert">{{this.errorMsg}}</div>
+    {{encrypt}}
+    <br>
+    {{decrypt}}
+    
   </div>
 </template>
 
@@ -110,6 +107,7 @@
 <script>
 import PersonWeb3 from "../../utils/PersonWeb3.js";
 import Pacient from "../../utils/Pacient.js";
+
 export default {
   name: "PacientDoctorsAccess",
   data() {
@@ -122,7 +120,12 @@ export default {
       doctor: "",
       doctors: [],
       errorMsg: "cf",
-      error: false
+      error: false,
+
+      simpleCrypto: "",
+      encrypt: "",
+      decrypt: "",
+      
     };
   },
   mounted: function() {
@@ -130,57 +133,59 @@ export default {
       this.pacient = new Pacient();
       this.doctors = await this.pacient.getAllDoctors();
       this.loading = false;
+
+
+     
+
     });
   },
   methods: {
-
-    checkDuplicateDoctor: function(){
-      for(let i = 0; i < this.doctors.length; i++){
-        if(this.doctors[i].address == this.doctorAddress){
+    checkDuplicateDoctor: function() {
+      for (let i = 0; i < this.doctors.length; i++) {
+        if (this.doctors[i].address == this.doctorAddress) {
           return true;
         }
       }
       return false;
     },
 
-    addDoctorModal: async function(){
+    addDoctorModal: async function() {
       //tre sa verific daca e doctor si nu este deja adaugat
-      if(!this.checkDuplicateDoctor()){
-        
+      if (!this.checkDuplicateDoctor()) {
         this.doctor = await this.pacient.checkDoctorAddress(this.doctorAddress);
-        if(this.doctor == "error"){
-          this.errorMsg = "Invalid address!"
+        if (this.doctor == "error") {
+          this.errorMsg = "Invalid address!";
           this.error = true;
-        }
-        else{
-          if(this.doctor.name == ""){
-            this.errorMsg = "This address is not a doctor address!"
+        } else {
+          if (this.doctor.name == "") {
+            this.errorMsg = "This address is not a doctor address!";
             this.error = true;
-          }
-          else{
-            this.errorMsg = ""
+          } else {
+            this.errorMsg = "";
             this.error = false;
             this.showModalAdd = true;
           }
         }
-      }
-      else{
-        this.errorMsg = "This doctor already exist in access list!"
+      } else {
+        this.errorMsg = "This doctor already exist in access list!";
         this.error = true;
       }
     },
 
-    addDoctor: async function(){
+    addDoctor: async function() {
       await this.pacient.addDoctor(this.doctorAddress);
-      
-      let id = this.doctors.length == 0 ? 0 : this.doctors[this.doctors.length - 1].id + 1;
-      
+
+      let id =
+        this.doctors.length == 0
+          ? 0
+          : this.doctors[this.doctors.length - 1].id + 1;
+
       this.$set(this.doctors, this.doctors.length, {
         id: id,
         address: this.doctorAddress,
         name: this.doctor.name,
         specialty: this.doctor.specialty
-      })
+      });
 
       this.doctorAddress = "";
       this.showModalAdd = false;
@@ -190,9 +195,9 @@ export default {
       this.showModalDelete = true;
       this.doctor = doctor;
     },
-    deleteDoctor: async function(){
+    deleteDoctor: async function() {
       await this.pacient.deleteDoctor(this.doctor.address);
-      this.$delete(this.doctors, this.doctor.id)
+      this.$delete(this.doctors, this.doctor.id);
       this.showModalDelete = false;
     },
 

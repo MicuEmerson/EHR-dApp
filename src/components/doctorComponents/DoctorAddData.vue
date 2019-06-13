@@ -114,8 +114,35 @@
           v-if="loading == 0"
           type="button"
           class="btn btn-outline-primary central-button"
-          @click="addToBlockchain()"
+          @click="showModal = true"
         >Add</button>
+
+        <div v-if="showModal">
+          <transition name="modal">
+            <div class="modal-mask">
+              <div class="modal-wrapper">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Key</span>
+                        </div>
+                        <input type="text" class="form-control" v-model="key">
+                      </div>
+                      <div v-if="invalidKey" role="alert" class="alert alert-danger">
+                        Please enter a valid key
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button @click="handleModal()" type="button" class="btn btn-danger">Ok</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </transition>
+        </div>
       </div>
     </transition>
   </div>
@@ -123,12 +150,15 @@
 
 <script>
 import Doctor from "../../utils/Doctor.js";
+import SimpleCrypto from "simple-crypto-js";
 export default {
   name: "DoctorAddData",
   data() {
     return {
+      key: "",
+      invalidKey: false,
       loading: 0,
-      myMedData: [],
+      showModal: false,
       doctor: "",
       show: 1,
       additionalInfo: "",
@@ -313,9 +343,6 @@ export default {
   methods: {
     addToBlockchain: async function() {
       this.loading = 1;
-      console.log(this.doctor.doctorName);
-      this.myJson.doctor = this.doctor.doctorName;
-      this.myJson.data = new Date().getTime();
 
       for (let i of this.analysis) {
         for (let j of i.elems) {
@@ -328,16 +355,29 @@ export default {
         }
       }
       this.myJson.additionalInfo = this.additionalInfo;
+      this.myJson.doctor = this.doctor.doctorName;
+      this.myJson.data = new Date().getTime();
 
-      await this.doctor.addMedicalData(JSON.stringify(this.myJson));
+      var stringData = JSON.stringify(this.myJson);
+      this.simpleCrypto = new SimpleCrypto(this.key);
+      this.encrypt = this.simpleCrypto.encrypt(stringData);
+      console.log(this.encrypt);
+
+      await this.doctor.addMedicalData(this.encrypt);
       this.loading = 0;
       this.show = 1;
       this.clearAll();
     },
 
-    getAllMedicalData: async function() {
-      this.myMedData = await this.doctor.getAllMedicalData();
-      console.log(this.myMedData);
+    handleModal: function(){
+      if(this.key.length != 64){
+        this.invalidKey = true;
+      }
+      else{
+        this.invalidKey = false;
+        this.showModal = false;
+        this.addToBlockchain();
+      }
     },
 
     clearAll: async function() {
@@ -429,6 +469,22 @@ legend {
   border-radius: 5px;
   width: 200px;
   text-align: center;
+}
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .fade-enter-active,

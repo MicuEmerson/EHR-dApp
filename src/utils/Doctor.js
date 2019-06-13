@@ -71,10 +71,10 @@ export default class Doctor {
     async getAllMedicalData() {
         let nr = await this.person.getMedicalDataSize({ from: this.web3Wrapper.account });
         let medicalDatas = [];
-
+    
         for (let i = 0; i < nr; i++) {
             let x = await this.person.getMedicalDataIndex(i, { from: this.web3Wrapper.account });
-            medicalDatas.push(JSON.parse(x));
+            medicalDatas.push(x);
         }
 
         return medicalDatas;

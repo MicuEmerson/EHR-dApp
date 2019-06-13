@@ -62,7 +62,7 @@ export default class Pacient {
 
         for (let i = 0; i < nr; i++) {
             let x = await this.person.getMedicalDataIndex(i, { from: this.web3Wrapper.account });
-            medicalDatas.push(JSON.parse(x));
+            medicalDatas.push(x);
         }
 
         return medicalDatas;
