@@ -105,7 +105,6 @@
 
 
 <script>
-import PersonWeb3 from "../../utils/PersonWeb3.js";
 import Pacient from "../../utils/Pacient.js";
 
 export default {

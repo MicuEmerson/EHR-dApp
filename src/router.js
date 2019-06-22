@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
 import PersonInfo from './components/personComponents/PersonInfo.vue'
 import PersonDoctorsAccess from './components/personComponents/PersonDoctorsAccess.vue'
 import PersonMedicalData from './components/personComponents/PersonMedicalData.vue'
@@ -12,11 +11,6 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'home',
-    //   component: Home
-    // },
     {
       path: '/',
       name: 'pacient',

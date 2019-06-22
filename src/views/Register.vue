@@ -182,7 +182,6 @@
 
 <script>
 import FieldValidator from "../utils/FieldValidator.js";
-import PersonWeb3 from "../utils/PersonWeb3.js";
 import Pacient from "../utils/Pacient.js";
 export default {
   name: "Register",
@@ -221,7 +220,6 @@ export default {
   },
   mounted: function() {
     this.$nextTick( async function() {
-      // PersonWeb3.load();
       this.pacient = new Pacient();
       if(typeof this.pacient.contracts == 'undefined'){
         await this.pacient.loadContracts();
