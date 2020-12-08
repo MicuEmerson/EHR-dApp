@@ -15,7 +15,7 @@ We are trying to apply the EHR systems logic to Blockchain architecture, of cour
   </ul>
 
 ## Arhitecture
-The application constists of two main modules, the first one provides the user interface and the second one provides the Blockchain. This two main modules are connected by a third module which is a bridge between browser and Blockchain
+The application constists of two main modules, the first one provides the user interface and the second one provides the Blockchain. This two main modules are connected by a third module which is a bridge between browser and Blockchain.
 ![Screenshot](https://github.com/MicuEmerson/EHR-dApp/blob/master/arhitecture.png)
 
 
